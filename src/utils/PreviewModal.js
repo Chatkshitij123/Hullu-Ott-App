@@ -118,7 +118,7 @@ import request, { API_KEY } from "../Request"
 
 import instance from '../axios'
 
-const PreviewModal = ({ visible, setVisible, data, url }) => {
+const PreviewModal = ({ open, setOpen, data, url }) => {
     const [movieD, setMovieD] = useState();
     
     useEffect(() => {
@@ -138,9 +138,9 @@ const PreviewModal = ({ visible, setVisible, data, url }) => {
     return (
         <Modal
             centered
-            visible={visible}
-            onCancel={() => setVisible(false)}
-            onOk={() => setVisible(false)}
+            open={open} // Updated to use 'open' prop
+            onCancel={() => setOpen(false)} // Updated to use 'setOpen' function
+            onOk={() => setOpen(false)} // Updated to use 'setOpen' function
             width={1060}
             footer={null}
             destroyOnClose

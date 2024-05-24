@@ -9,22 +9,25 @@ import {
 } from "react-icons/md"; //md-material design
 import "./css/Header.css";
 import request from "../Request";
-import { Dropdown, Input } from "antd";
+import { Dropdown, Input, Menu } from "antd"; // Make sure to import Menu
 function Header({ setSelectedOption }) {
-  const [visible, setVisible] = useState(false);
+ const [open, setOpen] = useState(false);
   const onSearch = (value) => {
     let _value = String(value).replace(" ", "+");
     setSelectedOption(request.searchMovies + _value);
   };
-  const dropdownOverlay = (
-    <div>
+  const menu = (
+    <Menu>
+    
+      <Menu.Item>
       <Input.Search
-        placeholder="input search text"
-        enterButton="Search"
-        size="large"
-        onSearch={onSearch}
-      />
-    </div>
+          placeholder="input search text"
+          enterButton="Search"
+          size="large"
+          onSearch={onSearch}
+        />
+      </Menu.Item>
+      </Menu>
   );
   
   return (
@@ -56,16 +59,19 @@ function Header({ setSelectedOption }) {
           <p>Collections</p>
         </div>
         <div className="header_icon">
-          <Dropdown   overlay={dropdownOverlay}
+    <Dropdown
+            overlay={menu}
             placement="bottomLeft"
             overlayStyle={{ background: "transparent" }}
-            visible={visible}
-            onVisibleChange={() => setVisible(!visible)}
-            arrow={{ pointAtCenter: true }}>
-              <div>
-          <MdSearch size={"30px"} />
-          <p>Search</p>
-          </div>
+            open={open}
+            onVisibleChange={(visible) => setOpen(visible)}
+            arrow={{ pointAtCenter: true }}
+          >
+             
+             <div> {/* Wrap the MdSearch icon with a div */}
+              <MdSearch size={"30px"} />
+            </div>
+           
           </Dropdown>
          
         </div>

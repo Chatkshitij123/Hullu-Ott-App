@@ -127,7 +127,7 @@ const VideoCard = ({data}) => {
           </h3>
         </div>
       </ReactCardFlip>
-      <PreviewModal visible={visible} setVisible={setVisible} data={data} url={url} />
+      <PreviewModal open={visible} setOpen={setVisible} data={data} url={url} />
     </>
   );
 };
